@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+}
+
+div{
+    background-color: white;
+    width: 80%;
+    height: 60px;
+    margin: 10px auto;
+    padding: 15px 30px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+button {
+    float: right;
+    margin: 0 30px;
+    height: 35px;
+    border: 2px solid rgb(65, 2, 65);
+    color: rgb(65, 2, 65);
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+
+button span {
+    color: rgb(65, 2, 65);
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+table {
+    width: 80%;
+    background-color: white;
+    height: auto;
+    margin: auto;
+    padding: 30px 30px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+th {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    text-align: left;
+    border-left: none;
+    border-right: none;
+    width: 25%;
+    padding: 5px 15px;
+}
+
+td {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    width: 25%;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgb(151, 150, 150);
+    padding: 5px 15px;
+}
+
+.row:hover {background-color: rgb(240, 232, 243);;}
+
+.table-head-row {
+    height: 45px;
+    background-color: rgb(239, 219, 245);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.row {
+    height: 40px;
+    padding: 10px 0;
+    /* border-collapse: collapse; */
+}
+
+.head {
+    font-family: 'Krona One', sans-serif;
+    font-size: 20px;
+    color: rgb(65, 2, 65);
+}
+

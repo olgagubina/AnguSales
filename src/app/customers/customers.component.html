@@ -1,6 +1,6 @@
 <div>
   <span class="head">Customers</span>
-  <button class="add-button" (click)="openDialog()"><span>+</span> Create customer</button>
+  <button class="add-button" mat-raised-button (click)="openDialog()"><span>+</span> Create customer</button>
 </div>
 <table cellspacing="0" cellpadding="0">
     <tr class="table-head-row">
@@ -10,9 +10,10 @@
       <th>Company</th>
     </tr>
     <tr class="row" *ngFor = 'let customer of customers'>
-      <td>{{customer.FirstName}}</td>
-      <td>{{customer.LastName}}</td> 
-      <td>{{customer.Phone}}</td>
-      <td>{{customer.Name}}, {{customer.Country}}</td>
+      <td>{{customer.name}}</td>
+      <td>{{customer.lastName}}</td> 
+      <td>{{customer.phone}}</td>
+      <td *ngIf="customer.country"> {{customer.company}}, {{customer.country}}</td>
+      <td *ngIf="!customer.country"> {{customer.company}}</td>
     </tr>
   </table>

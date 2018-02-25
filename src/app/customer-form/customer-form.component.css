@@ -1,0 +1,18 @@
+button {
+    float: right;
+    margin: 0 30px;
+    height: 35px;
+    border: 2px solid rgb(65, 2, 65);
+    color: rgb(65, 2, 65);
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+
+h1 {
+    font-family: 'Krona One', sans-serif;
+    font-size: 18px;
+    color: rgb(65, 2, 65);
+}

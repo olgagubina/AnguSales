@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Krona+One|Rubik:400,400i,500');
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 body {
     background-color: rgb(233, 229, 229);

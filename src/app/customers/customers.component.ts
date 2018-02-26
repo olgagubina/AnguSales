@@ -39,6 +39,8 @@ export class CustomersComponent implements OnInit {
     })
   }
 
+
+  //ADD CUSTOMER
   openDialog(): void {
     let dialogRef = this.dialog.open(CustomerFormComponent, {
       width: '290px',
@@ -53,20 +55,35 @@ export class CustomersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       var newCustomer =  Object.assign({},result);
-      newCustomer.company = this.companyNameToId(result.company)
+      var company = this.companyNameToId(result.company);
+      newCustomer.company = company.id;
       console.log(newCustomer);
 
       //POST request
       this.dataService.addCustomer(newCustomer).subscribe(
-        data => {},
+        data => {
+          this.dataService.getCustomers().subscribe(
+            data => {
+              this.customers = data;
+              console.log(this.customers)
+            },
+            error => {
+              console.error(error)
+          });
+          // this.customer = Object.assign({},data);
+          // this.customer.company = company.name;
+          // this.customer.country = company.country;
+          // this.customers.push(this.customer);
+        },
         error => {
           console.error(error)
         })
       
-      //Add to the component data scope
-      this.customer = result;
-      this.customer.id = this.generateId();
-      this.customers.push(this.customer);
+      // //Add to the component data scope
+      // this.customer = Object.assign({},result);
+      // this.customer.id = this.generateId();
+      // this.customer.country = company.country;
+      // this.customers.push(this.customer);
 
       //Clean the input
       this.customer = new Customer;
@@ -77,10 +94,35 @@ export class CustomersComponent implements OnInit {
     console.log(name);
     var companyIndex = this.companies.findIndex((company) => company.name.toString() == name.toString());
     console.log(this.companies[companyIndex].id);
-    return this.companies[companyIndex].id;
+    return this.companies[companyIndex];
   }
 
   generateId() {
     return this.customers[this.customers.length-1].id + 1;
+  }
+
+  //EDIT CUSTOMER
+  EditCustomer(customer: Customer) {
+
+    this.dataService.editCustomer(customer);
+  }
+
+
+  //DELETE CUSTOMER
+  DeleteCustomer(customer: Customer) {
+    this.dataService.deleteCustomer(customer).subscribe(
+      data => {
+        this.dataService.getCustomers().subscribe(
+          data => {
+            this.customers = data;
+            console.log(this.customers)
+          },
+          error => {
+            console.error(error)
+        });
+      },
+      error => {
+        console.error(error)
+      });
   }
 }

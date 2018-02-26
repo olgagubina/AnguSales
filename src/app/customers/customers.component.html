@@ -8,12 +8,18 @@
       <th>Lastname</th> 
       <th>Phone</th>
       <th>Company</th>
+      <th></th>
     </tr>
-    <tr class="row" *ngFor = 'let customer of customers'>
-      <td>{{customer.name}}</td>
-      <td>{{customer.lastName}}</td> 
-      <td>{{customer.phone}}</td>
-      <td *ngIf="customer.country"> {{customer.company}}, {{customer.country}}</td>
-      <td *ngIf="!customer.country"> {{customer.company}}</td>
-    </tr>
+    <tr class="row" *ngFor = 'let customer of customers; let idx = index' >
+        <td>{{customer.name}}</td>
+        <td>{{customer.lastName}}</td> 
+        <td>{{customer.phone}}</td>
+        <td>{{customer.company}}, {{customer.country}}</td>
+        <td class="last-td">
+          <div class="wrapper">
+            <app-customer-activities [customer]='customer' (EditClick)="openDialog($event)" (DeleteClick)="DeleteCustomer($event)">
+              </app-customer-activities>
+          </div>
+        </td>
+   </tr>
   </table>

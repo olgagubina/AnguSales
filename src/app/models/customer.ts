@@ -5,4 +5,5 @@ export class Customer {
     email: string;
     phone: string;
     company: string;
+    country: string;
 }

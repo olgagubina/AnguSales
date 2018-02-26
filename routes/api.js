@@ -33,9 +33,27 @@ router.post('/addCustomer', function(req, res) {
     console.log(newCustomer);
 
     connection.query('INSERT INTO customers SET ?', newCustomer, function (err, result) {
-        if (err) throw err;
-        res.send(result);
         console.log(result);
+        if (err) throw err;
+            addedCustomer = {
+            id:result.id,
+            name: result.FirstName,
+            lastName: result.LastName,
+            email: result.Email,
+            phone: result.Phone,
+            company: result.Company
+            }
+        res.send(addedCustomer);
+        console.log(addedCustomer);
+    });
+});
+
+router.delete('/deleteCustomer/:id', (req, res) => {
+    var id_Customer = req.params.id;
+    connection.query("DELETE FROM customers WHERE id = ?", id_Customer, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.send (result);
     });
 });
 

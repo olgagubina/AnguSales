@@ -53,14 +53,14 @@ th {
 td {
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    width: 25%;
+    width: 20%;
     border-left: none;
     border-right: none;
     border-bottom: 1px solid rgb(151, 150, 150);
     padding: 5px 15px;
 }
 
-.row:hover {background-color: rgb(240, 232, 243);;}
+.row:hover {background-color: rgb(240, 232, 243);}
 
 .table-head-row {
     height: 45px;
@@ -80,3 +80,10 @@ td {
     color: rgb(65, 2, 65);
 }
 
+.wrapper {
+    width: 100px;
+    background-color: rgba(255, 255, 255, 0);
+    margin:0;
+    padding:0;
+    box-shadow: none;
+}

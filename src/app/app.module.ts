@@ -11,8 +11,8 @@ import { HeaderComponent } from './header/header.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { AppDataService } from './app-data.service';
-import { CustomerComponent } from './customer/customer.component';
 import { CustomerFormComponent } from './customer-form/customer-form.component';
+import { CustomerActivitiesComponent } from './customer-activities/customer-activities.component';
 // import { FilterPipe} from './filter.pipe';
 
 
@@ -22,8 +22,8 @@ import { CustomerFormComponent } from './customer-form/customer-form.component';
     HeaderComponent,
     CustomersComponent,
     CompaniesComponent,
-    CustomerComponent,
-    CustomerFormComponent
+    CustomerFormComponent,
+    CustomerActivitiesComponent
   ],
   imports: [
     BrowserModule, 
@@ -34,7 +34,7 @@ import { CustomerFormComponent } from './customer-form/customer-form.component';
     MatFormFieldModule,
     BrowserAnimationsModule 
   ],
-  entryComponents:[CustomerComponent,CustomerFormComponent],
+  entryComponents:[CustomerFormComponent],
   providers: [AppDataService],
   bootstrap: [AppComponent]
 })

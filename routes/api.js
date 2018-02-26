@@ -48,6 +48,18 @@ router.post('/addCustomer', function(req, res) {
     });
 });
 
+router.put('/editCustomer/:id', (req, res) => {
+    var id_Customer = req.params.id;
+    console.log(id_Customer);
+    var customer = req.body.customer;
+    console.log(customer);
+    connection.query("UPDATE customers SET ? WHERE id = ?", [customer, id_Customer], function (err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.send (result);
+    });
+});
+
 router.delete('/deleteCustomer/:id', (req, res) => {
     var id_Customer = req.params.id;
     connection.query("DELETE FROM customers WHERE id = ?", id_Customer, function (err, result) {

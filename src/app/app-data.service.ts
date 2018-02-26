@@ -31,10 +31,19 @@ export class AppDataService {
     return this.http.post<Customer>('api/addCustomer', {customer: newCustomerForDB});
   }
 
-  editCustomer(edittedCustomer: Customer)/*: Observable <Customer>*/ {
+  updateCustomer(edittedCustomer: Customer): Observable <Customer> {
     console.log(edittedCustomer);
-    // return this.http.put <Customer>('api/editCustomer/'+edittedCustomer.id, {customer: edittedCustomer});
+    var edittedCustomerForDB = {
+      FirstName: edittedCustomer.name,
+      LastName: edittedCustomer.lastName,
+      Email: edittedCustomer.email,
+      Phone: edittedCustomer.phone,
+      Company: edittedCustomer.company
+    }
+    console.log(edittedCustomerForDB);
+    return this.http.put <Customer>('api/editCustomer/'+edittedCustomer.id, {customer: edittedCustomerForDB});
   }
+
 
   deleteCustomer(deletedCustomer: Customer): Observable <Customer> {
     console.log(deletedCustomer);

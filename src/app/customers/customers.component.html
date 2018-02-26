@@ -17,7 +17,7 @@
         <td>{{customer.company}}, {{customer.country}}</td>
         <td class="last-td">
           <div class="wrapper">
-            <app-customer-activities [customer]='customer' (EditClick)="openDialog($event)" (DeleteClick)="DeleteCustomer($event)">
+            <app-customer-activities [customer]='customer' (EditClick)="openEditDialog($event)" (DeleteClick)="DeleteCustomer($event)">
               </app-customer-activities>
           </div>
         </td>

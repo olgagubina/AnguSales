@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppDataService } from '../app-data.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { CustomerFormComponent } from '../customer-form/customer-form.component';
 import { Customer } from '../models/customer'
@@ -27,7 +27,7 @@ export class CustomersComponent implements OnInit {
       },
       error => {
         console.error(error)
-    });
+      });
 
     this.dataService.getCompanies().subscribe(
       data => {
@@ -36,7 +36,7 @@ export class CustomersComponent implements OnInit {
       },
       error => {
         console.error(error)
-    })
+      })
   }
 
 
@@ -44,17 +44,18 @@ export class CustomersComponent implements OnInit {
   openDialog(): void {
     let dialogRef = this.dialog.open(CustomerFormComponent, {
       width: '290px',
-      data: { name: this.customer.name, 
-              lastName:this.customer.lastName, 
-              email: this.customer.email,
-              phone: this.customer.phone,
-              company: this.customer.company
-            }
+      data: {
+        name: this.customer.name,
+        lastName: this.customer.lastName,
+        email: this.customer.email,
+        phone: this.customer.phone,
+        company: this.customer.company
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      var newCustomer =  Object.assign({},result);
+      var newCustomer = Object.assign({}, result);
       var company = this.companyNameToId(result.company);
       newCustomer.company = company.id;
       console.log(newCustomer);
@@ -69,7 +70,7 @@ export class CustomersComponent implements OnInit {
             },
             error => {
               console.error(error)
-          });
+            });
           // this.customer = Object.assign({},data);
           // this.customer.company = company.name;
           // this.customer.country = company.country;
@@ -78,7 +79,7 @@ export class CustomersComponent implements OnInit {
         error => {
           console.error(error)
         })
-      
+
       // //Add to the component data scope
       // this.customer = Object.assign({},result);
       // this.customer.id = this.generateId();
@@ -98,13 +99,56 @@ export class CustomersComponent implements OnInit {
   }
 
   generateId() {
-    return this.customers[this.customers.length-1].id + 1;
+    return this.customers[this.customers.length - 1].id + 1;
   }
 
-  //EDIT CUSTOMER
-  EditCustomer(customer: Customer) {
+  // EditCustomer(customer) {
+  //   var edittedCustomer = this.openEditDialog(customer);
+  //   console.log(edittedCustomer);
+  //   this.UpdateCustomer(edittedCustomer);
+  // }
 
-    this.dataService.editCustomer(customer);
+  openEditDialog(customer: Customer): void {
+    let dialogRef = this.dialog.open(CustomerFormComponent, {
+      width: '290px',
+      data: {
+        name: customer.name,
+        lastName: customer.lastName,
+        email: customer.email,
+        phone: customer.phone,
+        company: customer.company
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      var newCustomer = Object.assign({}, result);
+      var company = this.companyNameToId(result.company);
+      newCustomer.id = customer.id;
+      newCustomer.company = company.id;
+      console.log(newCustomer);
+      this.UpdateCustomer(newCustomer);
+    });
+  }
+
+  //UPDATE CUSTOMER
+  UpdateCustomer(customer) {
+    //PUT request
+    this.dataService.updateCustomer(customer).subscribe(
+      data => {
+        this.dataService.getCustomers().subscribe(
+          data => {
+            this.customers = data;
+            console.log(this.customers)
+          },
+          error => {
+            console.error(error)
+          });
+      },
+      error => {
+        console.error(error)
+      })
+    this.customer = new Customer;
   }
 
 
@@ -119,7 +163,7 @@ export class CustomersComponent implements OnInit {
           },
           error => {
             console.error(error)
-        });
+          });
       },
       error => {
         console.error(error)
